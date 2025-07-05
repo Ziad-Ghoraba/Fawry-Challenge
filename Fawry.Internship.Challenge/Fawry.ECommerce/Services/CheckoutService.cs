@@ -57,6 +57,9 @@ namespace Fawry.ECommerce.Services
 
             customer.Deduct(totalAmount);
 
+            cart.ReduceProductStock();
+
+
             if (itemsToShip.Any())
             {
                 shippingService.ShipItems(itemsToShip);
@@ -69,6 +72,8 @@ namespace Fawry.ECommerce.Services
                 string name = item.Product.Name.PadRight(19);
                 Console.WriteLine($"{item.Quantity}x {name} {item.GetTotalPrice()}");
             }
+
+            cart.Clear();
 
             Console.WriteLine("-------------------------------------");
             Console.WriteLine($"Subtotal:          {subtotal}");

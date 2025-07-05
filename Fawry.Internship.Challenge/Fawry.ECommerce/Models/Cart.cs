@@ -43,6 +43,20 @@ namespace Fawry.ECommerce.Models
                 items.Add(new CartItem { Product = product, Quantity = quantity });
         }
 
+        public void ReduceProductStock()
+        {
+            foreach (var item in items)
+            {
+                item.Product.Quantity -= item.Quantity;
+            }
+        }
+
+        public void Clear()
+        {
+            items.Clear();
+        }
+
+
         public bool IsEmpty() => !items.Any();
 
         public decimal GetSubtotal()
